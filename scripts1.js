@@ -187,8 +187,8 @@ allSpots.forEach(spot => {
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }
-
 // --- Attach filter change events ---
 document.querySelectorAll(".food-filter").forEach(cb => {
   cb.addEventListener("change", refreshLocalHarvestDisplay);
 });
+
