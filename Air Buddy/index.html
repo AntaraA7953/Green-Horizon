@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AirBuddy - Air Quality</title>
+  <link rel="icon" href="images/eco-favicon.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="theme-toggle">
+    <button id="toggleThemeBtn">🌙 Switch to Dark Mode</button>
+  </div>
+  
+  <div class="container">
+    <div class="card">
+      <h1>AirBuddy</h1>
+      <p id="aqi" class="aqi-text">Loading AQI...</p>
+      <div id="icon" class="icon-container"></div>
+      <p id="message" class="message-text"></p>
+
+      <div id="weather-info" class="weather">
+        <p id="temperature"></p>
+        <p id="humidity"></p>
+        <p id="wind"></p>
+      </div>
+      
+
+      <div id="alert" class="alert hidden">
+        <img src="images/eco-notification.png" alt="Alert" class="alert-icon" />
+        <span>Air quality is poor! Stay safe!</span>
+      </div>
+
+      <button id="refreshButton">Refresh AQI</button>
+      <div id="countdown"></div>
+      <div id="tips"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
