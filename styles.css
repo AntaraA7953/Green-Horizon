@@ -217,6 +217,18 @@ body {
   }
 }
 
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.3; /* Adjust for visibility */
+  pointer-events: none;
+}
+
 /* Media queries for responsiveness */
 @media (min-width: 640px) {
   .nav-grid {

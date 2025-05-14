@@ -8,6 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <video autoplay loop playsinline muted id="bg-video">
+    <source src="background.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <button id="toggle-sound" style="position:fixed;top:20px;left:20px;z-index:10;padding:10px 20px;font-size:1rem;">
+    🔇 Sound Off
+  </button>
   <div class="container">
     <header class="header">
       <h1 class="hero-title">🌿 Welcome to <span>Green Horizon</span></h1>
@@ -68,6 +75,14 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const video = document.getElementById('bg-video');
+    const soundBtn = document.getElementById('toggle-sound');
+
+    soundBtn.addEventListener('click', function() {
+      video.muted = !video.muted;
+      soundBtn.textContent = video.muted ? '🔇 Sound Off' : '🔊 Sound On';
+    });
   </script>
 </body>
 </html>
