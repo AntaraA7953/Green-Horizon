@@ -149,3 +149,22 @@ button#getRouteBtn:hover {
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+/* Dark mode fixes for map direction visibility */
+body.dark-mode .leaflet-routing-container {
+  background-color: #1e1e1e !important;
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode .leaflet-routing-container .leaflet-routing-text {
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode .leaflet-routing-alternatives-container {
+  background-color: #1e1e1e !important;
+}
+
+body.dark-mode .leaflet-routing-container h2,
+body.dark-mode .leaflet-routing-container span,
+body.dark-mode .leaflet-routing-container div {
+  color: #f0f0f0 !important;
+}
