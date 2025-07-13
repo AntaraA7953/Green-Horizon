@@ -124,4 +124,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   getAQI();
+  // Theme toggle logic
+  const toggleButton = document.getElementById("toggleThemeBtn");
+
+  toggleButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+      toggleButton.textContent = "☀️ Switch to Light Mode";
+    } else {
+      toggleButton.textContent = "🌙 Switch to Dark Mode";
+    }
+  });
+
 });
