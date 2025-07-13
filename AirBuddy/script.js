@@ -94,7 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
         aqiText.textContent = `AQI Level: ${aqi} (${descriptions[aqi - 1]})`;
         messageText.textContent = messages[aqi - 1];
         iconContainer.innerHTML = `<img src="${icons[aqi]}" alt="${descriptions[aqi - 1]}" class="aqi-icon" />`;
-        document.body.style.background = backgrounds[aqi];
+        
+       if (!document.body.classList.contains("dark-mode")) {
+  document.body.style.background = backgrounds[aqi];
+} else {
+  document.body.classList.add(`level-${aqi}`); // Add AQI class for dark mode gradients
+}
 
         if (aqi >= 4) {
           alertBox.classList.remove("hidden");
@@ -124,17 +129,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   getAQI();
-  // Theme toggle logic
-  const toggleButton = document.getElementById("toggleThemeBtn");
 
-  toggleButton.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+  // Dark Mode Toggle Logic
+const toggleThemeBtn = document.getElementById("toggleThemeBtn");
+let isDarkMode = false;
 
-    if (document.body.classList.contains("dark-mode")) {
-      toggleButton.textContent = "☀️ Switch to Light Mode";
-    } else {
-      toggleButton.textContent = "🌙 Switch to Dark Mode";
-    }
-  });
+// Check for saved user preference (optional)
+if (localStorage.getItem("darkMode") === "enabled") {
+  enableDarkMode();
+}
 
+// Toggle Function
+toggleThemeBtn.addEventListener("click", () => {
+  isDarkMode = !isDarkMode;
+  if (isDarkMode) {
+    enableDarkMode();
+    localStorage.setItem("darkMode", "enabled");
+    toggleThemeBtn.textContent = "☀️ Switch to Light Mode";
+  } else {
+    disableDarkMode();
+    localStorage.setItem("darkMode", "disabled");
+    toggleThemeBtn.textContent = "🌙 Switch to Dark Mode";
+  }
+});
+
+function enableDarkMode() {
+  document.body.classList.add("dark-mode");
+}
+
+function disableDarkMode() {
+  document.body.classList.remove("dark-mode");
+}
 });
