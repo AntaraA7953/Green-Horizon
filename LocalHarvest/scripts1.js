@@ -1,4 +1,22 @@
+
+
 const apiKey = "cdf3fe6585305f2c28044acdd6fcd3ad";
+
+// Map tile layers
+const lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+});
+
+const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors, © CARTO'
+});
+
+// Initialize map with default light theme
+const map = L.map('map').setView([28.6139, 77.2090], 6);
+lightTiles.addTo(map);
+
+let routeControls = [];
+let localHarvestMarkers = [];
 
 window.onload = function () {
   const overlay = document.getElementById("introImageOverlay");
@@ -8,15 +26,13 @@ window.onload = function () {
       overlay.style.display = "none";
     }, 1500);
   }, 2500);
+
+  // Check for saved dark mode preference
+  if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    switchToDarkMap();
+  }
 };
-
-const map = L.map('map').setView([28.6139, 77.2090], 6);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
-
-let routeControls = [];
-let localHarvestMarkers = [];
 
 async function geocode(place) {
   const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(place)}`);
@@ -90,6 +106,27 @@ function refreshLocalHarvestDisplay() {
 }
 // --- End LocalHarvest Feature ---
 
+function switchToDarkMap() {
+  map.removeLayer(lightTiles);
+  map.addLayer(darkTiles);
+}
+
+function switchToLightMap() {
+  map.removeLayer(darkTiles);
+  map.addLayer(lightTiles);
+}
+
+function toggleDarkMode() {
+  const isDarkMode = document.body.classList.toggle("dark-mode");
+  localStorage.setItem('darkMode', isDarkMode);
+  
+  if (isDarkMode) {
+    switchToDarkMap();
+  } else {
+    switchToLightMap();
+  }
+}
+
 async function getEcoRoute() {
   const src = document.getElementById("source").value;
   const dest = document.getElementById("destination").value;
@@ -152,28 +189,26 @@ async function getEcoRoute() {
           <b>Air Quality:</b> ${aqiText}<br><br>
         `;
 
-        // Generate food spots near source, midpoint, destination
+        // Generate food spots
         const spotsNearSource = await generateFoodSpotsAround(lat1, lon1);
-const spotsNearMid = await generateFoodSpotsAround(mid.lat, mid.lng);
-const spotsNearDest = await generateFoodSpotsAround(lat2, lon2);
-const allSpots = [...spotsNearSource, ...spotsNearMid, ...spotsNearDest];
-const activeFilters = Array.from(document.querySelectorAll(".food-filter:checked")).map(f => f.value.toLowerCase());
+        const spotsNearMid = await generateFoodSpotsAround(mid.lat, mid.lng);
+        const spotsNearDest = await generateFoodSpotsAround(lat2, lon2);
+        const allSpots = [...spotsNearSource, ...spotsNearMid, ...spotsNearDest];
+        const activeFilters = Array.from(document.querySelectorAll(".food-filter:checked")).map(f => f.value.toLowerCase());
 
-allSpots.forEach(spot => {
-  // Map spot types to filter categories
-  let spotCategory = "farm-sourced";
-  if (spot.type.includes("organic")) spotCategory = "eco-certified";
-  else if (spot.type.includes("marketplace")) spotCategory = "farmers-market";
-  else if (spot.type.includes("greengrocer")) spotCategory = "sustainable-grocer";
+        allSpots.forEach(spot => {
+          let spotCategory = "farm-sourced";
+          if (spot.type.includes("organic")) spotCategory = "eco-certified";
+          else if (spot.type.includes("marketplace")) spotCategory = "farmers-market";
+          else if (spot.type.includes("greengrocer")) spotCategory = "sustainable-grocer";
 
-  if (activeFilters.includes(spotCategory)) {
-    const marker = L.marker([spot.lat, spot.lon]).addTo(map);
-    marker.bindPopup(`<b>${spot.name}</b><br>Type: ${spotCategory.replace("-", " ")}`);
-  }
-});
+          if (activeFilters.includes(spotCategory)) {
+            const marker = L.marker([spot.lat, spot.lon]).addTo(map);
+            marker.bindPopup(`<b>${spot.name}</b><br>Type: ${spotCategory.replace("-", " ")}`);
+          }
+        });
 
         allFoodSpots.push(...spotsNearSource, ...spotsNearMid, ...spotsNearDest);
-
         refreshLocalHarvestDisplay();
       });
 
@@ -184,11 +219,7 @@ allSpots.forEach(spot => {
   }
 }
 
-function toggleDarkMode() {
-  document.body.classList.toggle("dark-mode");
-}
-// --- Attach filter change events ---
+// Attach filter change events
 document.querySelectorAll(".food-filter").forEach(cb => {
   cb.addEventListener("change", refreshLocalHarvestDisplay);
 });
-
