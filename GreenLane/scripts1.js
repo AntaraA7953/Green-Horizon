@@ -192,3 +192,50 @@ async function getEcoRoute() {
 function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
 }
+
+
+
+
+// Initialize map tiles
+const lightTiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+});
+
+const darkTiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors, © CARTO'
+});
+
+// Initialize map
+// const map = L.map('map').setView([28.6139, 77.2090], 6);
+
+// Check for saved preference or system preference
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedMode = localStorage.getItem('darkMode');
+const initialDarkMode = savedMode ? savedMode === 'true' : prefersDark;
+
+if (initialDarkMode) {
+  document.body.classList.add('dark-mode');
+  map.addLayer(darkTiles);
+} else {
+  map.addLayer(lightTiles);
+}
+
+// Enhanced toggle function
+function toggleDarkMode() {
+  const isDarkMode = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode', isDarkMode);
+  
+  // Switch map tiles
+  if (isDarkMode) {
+    map.removeLayer(lightTiles);
+    map.addLayer(darkTiles);
+    
+    // Update route colors if any routes exist
+    routeControls.forEach(control => {
+      
+    });
+  } else {
+    map.removeLayer(darkTiles);
+    map.addLayer(lightTiles);
+  }
+}
