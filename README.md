@@ -1,73 +1,110 @@
-# Welcome to your Lovable project
+# 🌿 Green Horizon
 
-## Project info
+**Green Horizon** is a unified platform for sustainable living and smart environmental solutions. It brings together a suite of eco-conscious applications that promote green transportation, smart waste management, cleaner air, and local food systems using modern web technologies, APIs, and machine learning.
 
-**URL**: https://lovable.dev/projects/cd80347e-9f18-4fa5-9818-84178ffe4cfb
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### 🌍 1. EcoRoute
+A green navigation system that helps users choose eco-friendly travel routes:
+- Walking/Biking route suggestions
+- Real-time weather and air quality data using OpenWeatherMap API
+- Tree coverage consideration and an intelligent **Green Score**
 
-**Use Lovable**
+### 🗑 2. Wasteless – Smart Waste Sorting Assistant
+An AI-powered tool to reduce landfill waste by educating users:
+- Classifies waste into **Recyclable**, **Compost**, or **Trash**
+- Uses machine learning to detect and sort waste via image upload
+- Helps users build better waste-sorting habits
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cd80347e-9f18-4fa5-9818-84178ffe4cfb) and start prompting.
+### 🛒 3. Local Harvest
+A local food discovery and sustainability platform:
+- Connects users to **local farms**, **organic vendors**, and **seasonal markets**
+- Promotes local and sustainable consumption
+- Provides eco-friendly agricultural and dietary tips
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🍃 4. AirBuddy
+Your real-time air quality companion:
+- Displays **AQI (Air Quality Index)** based on user location
+- Offers personalized health tips based on pollution levels
+- Clean, mobile-responsive interface with outdoor activity suggestions
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🧰 Tech Stack
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- **Frontend:** React
+- **APIs:** 
+  - OpenWeatherMap API (weather & air quality)
+  - OpenRouteService API (navigation & geolocation)
+- **AI/ML:** TensorFlow / Keras (used in Wasteless)
+- **Design:** Modern responsive UI, dark/light mode, background videos
+- **Deployment:** Vercel
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 🛠 Setup Instructions
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/green-horizon.git
+   cd green-horizon
+Insert your API keys in config.js:
 
-# Step 3: Install the necessary dependencies.
-npm i
+javascript
+Copy
+Edit
+const OPENWEATHER_API_KEY = 'your_openweather_key';
+const OPENROUTESERVICE_API_KEY = 'your_openrouteservice_key';
+Run locally by opening index.html in a browser, or deploy via your preferred platform.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+📁 Project Structure
+pgsql
+Copy
+Edit
+green-horizon/
+├── index.html
+├── ecoRoute/
+│   ├── map.html
+│   ├── ecoRoute.js
+│   ├── ecoRoute.mp4
+│   └── ecoRoute1.mp4
+├── wasteless/
+│   ├── index.html
+│   ├── model.js
+│   └── styles.css
+├── localHarvest/
+│   ├── index.html
+│   └── localHarvest.js
+├── airBuddy/
+│   ├── index.html
+│   └── airQuality.js
+├── assets/
+│   ├── images/
+│   └── icons/
+└── styles/
+    └── global.css
+💡 Future Plans
+Gamified eco-journeys and community challenges
 
-**Edit a file directly in GitHub**
+Interactive pollution and produce heatmaps
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Mobile app support (Progressive Web App)
 
-**Use GitHub Codespaces**
+Expansion to support carbon tracking and eco-credits
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+🤝 Contributing
+We welcome community contributions! Feel free to fork, raise issues, or submit pull requests. For major changes, open an issue first to discuss what you'd like to work on.
 
-## What technologies are used for this project?
+📜 License
+This project is licensed under the MIT License.
 
-This project is built with:
+🌟 Acknowledgements
+OpenWeatherMap – for weather & air quality data
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+OpenRouteService – for navigation services
 
-## How can I deploy this project?
+TensorFlow.js – for real-time waste classification
 
-Simply open [Lovable](https://lovable.dev/projects/cd80347e-9f18-4fa5-9818-84178ffe4cfb) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+All open-source contributors who made this project possible 💚
