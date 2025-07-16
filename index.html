@@ -1,88 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Green Horizon</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <video autoplay loop playsinline muted id="bg-video">
-    <source src="Background.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <button id="toggle-sound" style="position:fixed;top:20px;left:20px;z-index:10;padding:10px 20px;font-size:1rem;">
-    🔇 Sound Off
-  </button>
-  <div class="container">
-    <header class="header">
-      <h1 class="hero-title">🌿 Welcome to <span>Green Horizon</span></h1>
-      <p class="hero-subtitle">Explore sustainable initiatives and eco-friendly solutions for a better tomorrow</p>
-    </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>green-horizon-compass-quest</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="green-horizon-compass-quest" />
     
-    <nav class="nav-grid">
-      <a href="GreenLane/index.html" class="nav-block green-block">
-        <div class="nav-title">Green Lane</div>
-        <div class="nav-icon">🚴</div>
-        <div class="nav-explore">Explore</div>
-        <svg class="white-leaf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-        </svg>
-      </a>
-      
-      <a href="LocalHarvest/index.html" class="nav-block light-green-block">
-        <div class="nav-title">Local Harvest</div>
-        <div class="nav-icon">🌽</div>
-        <div class="nav-explore">Explore</div>
-        <svg class="white-leaf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-        </svg>
-      </a>
-      
-      <a href="AirBuddy/index.html" class="nav-block green-block">
-        <div class="nav-title">Air Buddy</div>
-        <div class="nav-icon">🌬️</div>
-        <div class="nav-explore">Explore</div>
-        <svg class="white-leaf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-        </svg>
-      </a>
-      
-      <a href="https://trash-vision-classify-it.vercel.app/" class="nav-block light-green-block">
-        <div class="nav-title">WasteLess</div>
-        <div class="nav-icon">♻️</div>
-        <div class="nav-explore">Explore</div>
-        <svg class="white-leaf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-          <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-        </svg>
-      </a>
-    </nav>
+    <meta property="og:type" content="website" />
     
-    <footer class="footer">
-      <p>&copy; <span id="year"></span> Green Horizon - Sustainable Solutions for a Better World</p>
-      <div class="footer-links">
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Privacy</a>
-      </div>
-    </footer>
-  </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    
+  </head>
 
-    const video = document.getElementById('bg-video');
-    const soundBtn = document.getElementById('toggle-sound');
-
-    soundBtn.addEventListener('click', function() {
-      video.muted = !video.muted;
-      soundBtn.textContent = video.muted ? '🔇 Sound Off' : '🔊 Sound On';
-    });
-  </script>
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
