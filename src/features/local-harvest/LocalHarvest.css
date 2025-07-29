@@ -1,0 +1,158 @@
+/* LocalHarvest.css */
+body {
+  margin: 0;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.local-harvest-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(90deg, #ffb347, #ffcc33);
+  color: #f8a921;
+  padding: 1.2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+header button {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.main {
+  display: flex;
+  height: 100%;
+}
+
+aside {
+  width: 320px;
+  padding: 20px;
+  background: rgba(255, 243, 205, 0.8);
+  backdrop-filter: blur(14px);
+  overflow-y: auto;
+  border-right: 2px solid #ffecb3;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.05);
+}
+
+aside input, aside select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ffd54f;
+  background: #fffbea;
+  font-size: 1rem;
+  color: #4a2f00;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+aside button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(to right, #f9a825, #ff8f00);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+aside button:hover {
+  transform: scale(1.05);
+}
+
+.filters label {
+  display: block;
+  margin-bottom: 8px;
+  color: #5d4037;
+  font-weight: 500;
+}
+
+.route-details {
+  background: #fff8e1;
+  padding: 1rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  color: #5d4037;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border: 1px solid #ffd54f;
+}
+
+#map {
+  flex: 1;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffe082;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode */
+.dark aside {
+  background: #2e2e2e;
+  color: white;
+  border-right: 2px solid #444;
+}
+
+.dark header {
+  background: linear-gradient(90deg, #795548, #8d6e63);
+  color: white;
+}
+
+.dark .route-details {
+  background: #3d3d3d;
+  color: white;
+  border: 1px solid #666;
+}
+
+.dark .filters label {
+  color: #ccc;
+}
+
+.dark aside input, .dark aside select {
+  background: #444;
+  color: white;
+  border: 1px solid #777;
+}
+
+.dark header button {
+  background: #333;
+  color: white;
+}
+
+.dark aside button {
+  background: linear-gradient(to right, #ffa000, #f57c00);
+}

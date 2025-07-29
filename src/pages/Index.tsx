@@ -48,13 +48,13 @@ const Index = () => {
       color: 'from-eco-sage to-eco-forest',
       path: '/wasteless'
     },
-    {
+    /**{
       name: 'Green Community',
       description: 'Connect with eco-conscious people and share sustainable tips',
       icon: Users,
       color: 'from-eco-DEFAULT to-eco-leaf',
       path: '/community'
-    },
+    },**/
     {
       name: 'EcoFestivals',
       description: 'Discover sustainable events and eco-friendly festivals',
@@ -104,18 +104,20 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
-                Start Your Journey
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
-              >
-                Learn More
-              </Button>
-            </div>
+  <Button
+    size="lg"
+    className="relative bg-white text-primary text-lg px-8 py-6 overflow-hidden rounded-xl transition-all duration-300 shadow-md group hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+  >
+    <span className="z-10 relative flex items-center">
+      Start Your Journey
+      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+    </span>
+    
+    {/* Glowing animated background shimmer */}
+    <span className="absolute inset-0 bg-gradient-to-r from-green-200 via-white to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></span>
+  </Button>
+</div>
+
           </div>
         </div>
         
@@ -150,7 +152,7 @@ const Index = () => {
               Your Sustainability Ecosystem
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Six powerful tools working together to make sustainable living effortless, 
+              Powerful tools working together to make sustainable living effortless, 
               rewarding, and fun.
             </p>
           </div>
@@ -196,18 +198,15 @@ const Index = () => {
             for the planet.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
-              Join Green Horizon
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-6"
-              asChild
-            >
-              <Link to="/login">Sign In</Link>
-            </Button>
-          </div>
+  <Button
+    size="lg"
+    className="bg-white text-primary hover:bg-black/90 text-lg px-8 py-6 transition duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,255,150,0.6)] hover:scale-105"
+    asChild
+  >
+    <Link to="https://green-community-six.vercel.app/">Join Green Community</Link>
+  </Button>
+</div>
+
         </div>
       </section>
 
