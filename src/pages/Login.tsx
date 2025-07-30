@@ -4,8 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
-import { Leaf, Mail, Lock, Chrome, Facebook } from 'lucide-react';
+import { Leaf, Mail, Lock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
     password: ''
   });
   const [isLoading, setIsLoading] = useState(false);
-  const { signIn, signInWithProvider } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,144 +33,127 @@ const Login = () => {
     setIsLoading(false);
   };
 
-  const handleSocialLogin = async (provider: 'google' | 'facebook') => {
-    setIsLoading(true);
-    const { error } = await signInWithProvider(provider);
-    if (!error) {
-      navigate('/');
-    }
-    setIsLoading(false);
-  };
-
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Animated background */}
-      <div className="absolute inset-0 hero-background">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full float-animation opacity-60"></div>
-        <div className="absolute bottom-20 right-16 w-24 h-24 bg-mint-green/10 rounded-full float-animation opacity-40" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/3 right-1/4 w-16 h-16 bg-leaf-green/10 rounded-full float-animation opacity-80" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute bottom-1/3 left-1/4 w-20 h-20 bg-forest-green/10 rounded-full float-animation opacity-50" style={{ animationDelay: '1s' }}></div>
-      </div>
-      
-      <div className="w-full max-w-md">
-        <Card className="glass-card slide-in-up shadow-2xl border-0">
-          <CardHeader className="text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-20 h-20 bg-gradient-eco rounded-full flex items-center justify-center pulse-glow">
-                <Leaf className="w-8 h-8 text-white" />
-              </div>
-            </div>
-            <CardTitle className="text-3xl gradient-text mb-2">Welcome Back</CardTitle>
-            <CardDescription>
-              Sign in to your Green Horizon account and continue your sustainable journey 🌱
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6 p-8">
-            {/* Social Login Buttons */}
-            <div className="space-y-3">
-              <Button 
-                variant="outline"
-                className="w-full h-12 hover:scale-105 transition-all duration-300 hover:shadow-md"
-                onClick={() => handleSocialLogin('google')}
-                disabled={isLoading}
-              >
-                <Chrome className="w-4 h-4 mr-2" />
-                Continue with Google
-              </Button>
-              <Button 
-                variant="outline"
-                className="w-full h-12 hover:scale-105 transition-all duration-300 hover:shadow-md"
-                onClick={() => handleSocialLogin('facebook')}
-                disabled={isLoading}
-              >
-                <Facebook className="w-4 h-4 mr-2" />
-                Continue with Facebook
-              </Button>
-            </div>
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background Video */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+      >
+        <source src="/green.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
 
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <Separator className="bg-border/50" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-card px-4 text-muted-foreground font-medium">Or continue with email</span>
-              </div>
-            </div>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm z-0" />
 
-            {/* Email/Password Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    className="pl-10 h-12 form-input"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
+      {/* Login Card with image background */}
+      <div className="w-full max-w-md z-10 px-4">
+        <Card
+          className="relative rounded-xl overflow-hidden shadow-2xl border-0 h-[700px] bg-cover bg-center flex items-center justify-center"
+          style={{
+            backgroundImage: 'url("https://i.pinimg.com/736x/1d/c5/1d/1dc51d2866cf141b5e3c0dbb53e045d3.jpg")'
+          }}
+        >
+          {/* Form container */}
+          <div className="bg-white/5 backdrop-blur-md rounded-xl w-[90%] max-w-sm mx-auto p-6">
+            <CardHeader className="text-center">
+              <div className="flex justify-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                  <Leaf className="w-6 h-6 text-white" />
                 </div>
               </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <div className="relative">
-                  <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder="Enter your password"
-                    className="pl-10 h-12 form-input"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-              </div>
+              <CardTitle className="text-2xl text-green-700 mb-2">Welcome Back</CardTitle>
+              <CardDescription className="text-gray-700 text-sm">
+                Sign in to your Green Horizon account and continue your sustainable journey 🌱
+              </CardDescription>
+            </CardHeader>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="remember"
-                    className="rounded border-border w-4 h-4 text-primary focus:ring-primary"
-                  />
-                  <Label htmlFor="remember" className="text-sm">
-                    Remember me
-                  </Label>
+            <CardContent className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="your@email.com"
+                      className="pl-10 h-12 form-input"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
-                <Link
-                  to="/forgot-password"
-                  className="text-sm text-primary hover:underline hover:scale-105 transition-transform"
+
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      placeholder="Enter your password"
+                      className="pl-10 h-12 form-input"
+                      value={formData.password}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id="remember"
+                      className="rounded border-border w-4 h-4 text-primary focus:ring-primary"
+                    />
+                    <Label htmlFor="remember" className="text-sm">
+                      Remember me
+                    </Label>
+                  </div>
+                  <Link
+                    to="/forgot-password"
+                    className="text-sm text-green-700 hover:underline hover:scale-105 transition-transform"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+
+                <Button
+                  className="w-full bg-green-500 hover:bg-green-600 text-white h-12 text-lg font-semibold"
+                  type="submit"
+                  disabled={isLoading}
                 >
-                  Forgot password?
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Signing In...
+                    </div>
+                  ) : (
+                    'Sign In'
+                  )}
+                </Button>
+              </form>
+
+              <div className="text-center text-sm pt-4">
+                <span className="text-white">Don't have an account? </span>
+                <Link
+                  to="/signup"
+                  className="text-black hover:underline font-semibold hover:scale-105 transition-transform inline-block"
+                >
+                  Sign up
                 </Link>
               </div>
-
-              <Button className="w-full btn-eco ripple h-12 text-lg font-semibold" type="submit" disabled={isLoading}>
-                {isLoading ? (
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 mr-2 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Signing In...
-                  </div>
-                ) : (
-                  'Sign In'
-                )}
-              </Button>
-            </form>
-
-            <div className="text-center text-sm pt-4">
-              <span className="text-muted-foreground">Don't have an account? </span>
-              <Link to="/signup" className="text-primary hover:underline font-semibold hover:scale-105 transition-transform inline-block">
-                Sign up
-              </Link>
-            </div>
-          </CardContent>
+            </CardContent>
+          </div>
         </Card>
       </div>
     </div>
