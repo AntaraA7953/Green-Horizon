@@ -135,75 +135,96 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-<div className="space-y-8 mb-16">
-   <div className="max-w-6xl mx-auto px-4">
-    <div className="text-center mb-16">
-      <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-        Your Sustainability Ecosystem
-      </h2>
-      <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-        Powerful tools working together to make sustainable living effortless, 
-        rewarding, and fun.
-      </p>
+<div className="relative">
+  {/* Background Video */}
+  <video
+    className="absolute top-0 left-0 w-full h-full object-cover z-0"
+    autoPlay
+    loop
+    muted
+    playsInline
+  >
+    <source src="/bg-video.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  {/* Content with a translucent dark layer for readability */}
+  <div className="relative z-10 space-y-8 bg-black/30 backdrop-blur-md pb-16">
+    <div className="max-w-6xl mx-auto px-4">
+      <div className="text-center">
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+          Your Sustainability Ecosystem
+        </h2>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          Powerful tools working together to make sustainable living effortless,
+          rewarding, and fun.
+        </p>
+      </div>
     </div>
-  </div>
 
-  {/* Top row: 3 cards */}
-  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {features.slice(0, 3).map((feature) => (
-      <Link key={feature.name} to={feature.path}>
-        <Card className="feature-card glass-card group h-full stagger-animation">
-          <CardContent className="p-8 text-center">
-            <div
-              className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
-            >
-              <feature.icon className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-              {feature.name}
-            </h3>
-            <p className="text-muted-foreground mb-6">{feature.description}</p>
-            <Button
-              variant="ghost"
-              className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
-            >
-              Explore
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
-          </CardContent>
-        </Card>
-      </Link>
-    ))}
-  </div>
+    {/* Top row: 3 cards */}
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.slice(0, 3).map((feature) => (
+        <Link key={feature.name} to={feature.path}>
+          <Card className="feature-card glass-card group h-full stagger-animation">
+            <CardContent className="p-8 text-center">
+              <div
+                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
+              >
+                <feature.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                {feature.name}
+              </h3>
+              <p className="text-muted-foreground mb-6">{feature.description}</p>
+              <Button
+                variant="ghost"
+                className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
+              >
+                Explore
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+              </Button>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
 
-  {/* Bottom row: 2 centered cards */}
-  <div className="flex justify-center gap-8 mb-18">
-    {features.slice(3).map((feature) => (
-      <Link key={feature.name} to={feature.path}>
-        <Card className="feature-card glass-card group h-full stagger-animation">
-          <CardContent className="p-8 text-center">
-            <div
-              className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
-            >
-              <feature.icon className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-              {feature.name}
-            </h3>
-            <p className="text-muted-foreground mb-6">{feature.description}</p>
-            <Button
-              variant="ghost"
-              className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
-            >
-              Explore
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
-          </CardContent>
-        </Card>
-      </Link>
-    ))}
+    {/* Bottom row: 2 centered cards */}
+    <div className="flex justify-center gap-8">
+      {features.slice(3).map((feature) => (
+        <Link key={feature.name} to={feature.path}>
+          <Card className="feature-card glass-card group h-full stagger-animation">
+            <CardContent className="p-8 text-center">
+              <div
+                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
+              >
+                <feature.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                {feature.name}
+              </h3>
+              <p className="text-muted-foreground mb-6">{feature.description}</p>
+              <Button
+                variant="ghost"
+                className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
+              >
+                Explore
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+              </Button>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+
+    {/* Extra spacing to extend video display */}
+    <div className="h-10 sm:h-20 md:h-30" />
   </div>
 </div>
+
+
+
 
 
       {/* CTA Section */}
