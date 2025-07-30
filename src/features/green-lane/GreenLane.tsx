@@ -476,7 +476,7 @@ const EcoRoute: React.FC = () => {
             id="routeDetails"
             style={{
               marginTop: '1rem',
-              background: darkMode ? '#1f1f1f' : 'white',
+              background: darkMode ? '#1f1f1f' : 'rgbda(255, 255, 255, 0.8)',
               padding: '1rem',
               borderRadius: '12px',
               fontSize: '0.9rem',

@@ -430,7 +430,7 @@ const LocalHarvest: React.FC = () => {
                 borderRadius: '10px',
                 border: 'none',
                 fontSize: '1rem',
-                boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+                boxShadow: '0 2px 6px hsla(0, 47%, 97%, 0.10)'
               }}
             >
               <option value="driving-car">Driving</option>
@@ -509,7 +509,7 @@ const LocalHarvest: React.FC = () => {
             id="routeDetails"
             style={{
               marginTop: '1rem',
-              background: darkMode ? '#1f1f1f' : 'white',
+              background: darkMode ? '#1f1f1f' : 'rgbda(255, 255, 255, 0.8)',
               padding: '1rem',
               borderRadius: '12px',
               fontSize: '0.9rem',
