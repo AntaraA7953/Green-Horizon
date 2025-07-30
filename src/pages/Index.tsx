@@ -1,25 +1,26 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
-import CactoChan from '@/components/CactoChan';
-import { 
-  Leaf, 
-  Navigation as NavigationIcon, 
-  Users, 
-  Recycle, 
-  Wind, 
-  ShoppingCart, 
+import {
+  Leaf,
+  Navigation as NavigationIcon,
+  Users,
+  Recycle,
+  Wind,
+  ShoppingCart,
   Calendar,
   ArrowRight,
   Sparkles,
   Globe,
+  X,
   Heart
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import heroBackground from '@/assets/hero-background.jpg';
 
 const Index = () => {
+
   const features = [
     {
       name: 'Green Lane',
@@ -64,14 +65,14 @@ const Index = () => {
     { label: 'Eco Warriors', value: '50,000+', icon: Users },
     { label: 'Cities Connected', value: '120', icon: Globe }
   ];
+const [showPopup, setShowPopup] = useState(false);
 
   return (
     <div className="min-h-screen">
       <Navigation />
-      <CactoChan />
 
       {/* Hero Section */}
-      <section 
+      <section
         className="relative h-screen flex items-center justify-center text-center overflow-hidden"
         style={{
           backgroundImage: `linear-gradient(135deg, rgba(34, 139, 34, 0.8), rgba(46, 204, 113, 0.7)), url(${heroBackground})`,
@@ -87,28 +88,50 @@ const Index = () => {
                 <Leaf className="w-10 h-10 text-white" />
               </div>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 float-animation">
               Green Horizon
             </h1>
-            
+
             <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl">
-              Your personal co-pilot to a greener life. Navigate sustainably, track your impact, 
+              Your personal co-pilot to a greener life. Navigate sustainably, track your impact,
               and turn eco-actions into daily adventures.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="relative bg-white text-primary text-lg px-8 py-6 overflow-hidden rounded-xl transition-all duration-300 shadow-md group hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
-              >
-                <span className="z-10 relative flex items-center">
-                  Start Your Journey
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-green-200 via-white to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></span>
-              </Button>
-            </div>
+
+           <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
+  <Button
+    size="lg"
+    onClick={() => setShowPopup(true)}
+    className="relative bg-white text-primary text-lg px-8 py-6 overflow-hidden rounded-xl transition-all duration-300 shadow-md group hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
+  >
+    <span className="z-10 relative flex items-center">
+      Start Your Journey
+      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+    </span>
+    <span className="absolute inset-0 bg-gradient-to-r from-green-200 via-white to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></span>
+  </Button>
+
+  {/* Video Popup */}
+  {showPopup && (
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4">
+      <div className="relative bg-white rounded-xl shadow-lg max-w-3xl w-full">
+        <button
+          onClick={() => setShowPopup(false)}
+          className="absolute top-3 right-3 text-gray-700 hover:text-red-500 transition"
+        >
+          <X className="w-6 h-6" />
+        </button>
+        <video
+          src="/Journey.mp4"
+          controls
+          autoPlay
+          className="w-full rounded-b-xl rounded-t-lg"
+        />
+      </div>
+    </div>
+  )}
+</div>
+
           </div>
         </div>
 
@@ -135,97 +158,84 @@ const Index = () => {
       </section>
 
       {/* Features Section */}
-<div className="relative">
-  {/* Background Video */}
-  <video
-    className="absolute top-0 left-0 w-full h-full object-cover z-0"
-    autoPlay
-    loop
-    muted
-    playsInline
-  >
-    <source src="/bg-video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
+      <div className="relative">
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          <source src="/bg-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-  {/* Content with a translucent dark layer for readability */}
-  <div className="relative z-10 space-y-8 bg-black/30 backdrop-blur-md pb-16">
-    <div className="max-w-6xl mx-auto px-4">
-      <div className="text-center">
-        <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-          Your Sustainability Ecosystem
-        </h2>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-          Powerful tools working together to make sustainable living effortless,
-          rewarding, and fun.
-        </p>
+        <div className="relative z-10 space-y-8 bg-black/30 backdrop-blur-md pb-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center">
+              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+                Your Sustainability Ecosystem
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Powerful tools working together to make sustainable living effortless,
+                rewarding, and fun.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.slice(0, 3).map((feature) => (
+              <Link key={feature.name} to={feature.path}>
+                <Card className="feature-card glass-card group h-full stagger-animation">
+                  <CardContent className="p-8 text-center">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                      {feature.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-6">{feature.description}</p>
+                    <Button
+                      variant="ghost"
+                      className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
+                    >
+                      Explore
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-8">
+            {features.slice(3).map((feature) => (
+              <Link key={feature.name} to={feature.path}>
+                <Card className="feature-card glass-card group h-full stagger-animation">
+                  <CardContent className="p-8 text-center">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}>
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                      {feature.name}
+                    </h3>
+                    <p className="text-muted-foreground mb-6">{feature.description}</p>
+                    <Button
+                      variant="ghost"
+                      className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
+                    >
+                      Explore
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                    </Button>
+                  </CardContent>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          <div className="h-10 sm:h-20 md:h-30" />
+        </div>
       </div>
-    </div>
-
-    {/* Top row: 3 cards */}
-    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {features.slice(0, 3).map((feature) => (
-        <Link key={feature.name} to={feature.path}>
-          <Card className="feature-card glass-card group h-full stagger-animation">
-            <CardContent className="p-8 text-center">
-              <div
-                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
-              >
-                <feature.icon className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-                {feature.name}
-              </h3>
-              <p className="text-muted-foreground mb-6">{feature.description}</p>
-              <Button
-                variant="ghost"
-                className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
-              >
-                Explore
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-              </Button>
-            </CardContent>
-          </Card>
-        </Link>
-      ))}
-    </div>
-
-    {/* Bottom row: 2 centered cards */}
-    <div className="flex justify-center gap-8">
-      {features.slice(3).map((feature) => (
-        <Link key={feature.name} to={feature.path}>
-          <Card className="feature-card glass-card group h-full stagger-animation">
-            <CardContent className="p-8 text-center">
-              <div
-                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500`}
-              >
-                <feature.icon className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
-                {feature.name}
-              </h3>
-              <p className="text-muted-foreground mb-6">{feature.description}</p>
-              <Button
-                variant="ghost"
-                className="group-hover:text-primary group-hover:scale-105 transition-all duration-300"
-              >
-                Explore
-                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-              </Button>
-            </CardContent>
-          </Card>
-        </Link>
-      ))}
-    </div>
-
-    {/* Extra spacing to extend video display */}
-    <div className="h-10 sm:h-20 md:h-30" />
-  </div>
-</div>
-
-
-
-
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-eco">
@@ -235,7 +245,7 @@ const Index = () => {
             Ready to Make a Difference?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join thousands of eco-warriors who are already making their daily choices count 
+            Join thousands of eco-warriors who are already making their daily choices count
             for the planet.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -271,6 +281,19 @@ const Index = () => {
           </div>
         </div>
       </footer>
+
+      {/* Chatbot Embed Script */}
+      <script dangerouslySetInnerHTML={{ __html: `
+        window.chtlConfig = { chatbotId: "5371122696" };
+        (function() {
+          var s = document.createElement("script");
+          s.src = "https://chatling.ai/js/embed.js";
+          s.async = true;
+          s.setAttribute("data-id", "5371122696");
+          s.setAttribute("id", "chtl-script");
+          document.body.appendChild(s);
+        })();
+      ` }} />
     </div>
   );
 };
