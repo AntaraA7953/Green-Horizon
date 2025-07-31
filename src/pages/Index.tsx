@@ -99,7 +99,10 @@ const [showPopup, setShowPopup] = useState(false);
             </p>
 
            <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
-  <Button
+ 
+
+  {/* 🔘 Trigger Button */}
+       <Button
     size="lg"
     onClick={() => setShowPopup(true)}
     className="relative bg-white text-primary text-lg px-8 py-6 overflow-hidden rounded-xl transition-all duration-300 shadow-md group hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
@@ -111,25 +114,30 @@ const [showPopup, setShowPopup] = useState(false);
     <span className="absolute inset-0 bg-gradient-to-r from-green-200 via-white to-green-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"></span>
   </Button>
 
-  {/* Video Popup */}
-  {showPopup && (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-xl shadow-lg max-w-3xl w-full">
-        <button
-          onClick={() => setShowPopup(false)}
-          className="absolute top-3 right-3 text-gray-700 hover:text-red-500 transition"
-        >
-          <X className="w-6 h-6" />
-        </button>
-        <video
-          src="/Journey.mp4"
-          controls
-          autoPlay
-          className="w-full rounded-b-xl rounded-t-lg"
-        />
+      {/* 🎥 Always Mounted Video Popup */}
+      <div
+        className={`fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4 transition-opacity duration-300 ${
+          showPopup ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="relative bg-white rounded-xl shadow-lg max-w-3xl w-full">
+          {/* ❌ Close Button */}
+          <button
+            onClick={() => setShowPopup(false)}
+            className="absolute top-4 right-4 text-white bg-black/50 hover:bg-black p-2 rounded-full transition z-50"
+          >
+            <X className="w-6 h-6" />
+          </button>
+
+          {/* 🎞️ Video Player */}
+          <video
+            src="/Journey.mp4"
+            controls
+            autoPlay
+            className="w-full rounded-b-xl rounded-t-lg"
+          />
+        </div>
       </div>
-    </div>
-  )}
 </div>
 
           </div>
