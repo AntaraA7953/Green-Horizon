@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React , {useState,useEffect} from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
@@ -66,6 +66,17 @@ const Index = () => {
     { label: 'Cities Connected', value: '120', icon: Globe }
   ];
 const [showPopup, setShowPopup] = useState(false);
+useEffect(() => {
+    if (document.getElementById('chtl-script')) return;
+
+    const script = document.createElement('script');
+    script.src = 'https://chatling.ai/js/embed.js';
+    script.async = true;
+    script.setAttribute('data-id', '5371122696');
+    script.setAttribute('id', 'chtl-script');
+    document.body.appendChild(script);
+  }, []);
+
 
   return (
     <div className="min-h-screen">
